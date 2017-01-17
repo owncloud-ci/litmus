@@ -8,6 +8,7 @@ ARG VCS_REF
 ENTRYPOINT ["/usr/local/bin/litmus"]
 
 RUN apk update && \
+  apk add openssl && \
   apk add --virtual build-dependencies build-base openssl-dev && \
   wget -q -O - http://www.webdav.org/neon/litmus/litmus-0.13.tar.gz | tar xzvf - -C /tmp && \
   cd /tmp/litmus-0.13 && \
