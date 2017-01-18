@@ -6,18 +6,22 @@ declare -x LITMUS_USERNAME
 declare -x LITMUS_PASSWORD
 declare -x LITMUS_TIMEOUT
 declare -x LITMUS_WAIT
+declare -x LITMUS_CHECK_URL
+declare -x LITMUS_CHECK_STATUS
 
 [[ -z "${LITMUS_TIMEOUT}" ]] && LITMUS_TIMEOUT="3600"
 [[ -z "${LITMUS_WAIT}" ]] && LITMUS_WAIT="false"
+[[ -z "${LITMUS_CHECK_URL}" ]] && LITMUS_CHECK_URL="${LITMUS_URL}"
+[[ -z "${LITMUS_CHECK_STATUS}" ]] && LITMUS_CHECK_STATUS="200"
 
 if [[ ${LITMUS_WAIT} == "true" || ${LITMUS_WAIT} == "1" ]]
 then
-  echo -n "Trying to access http://${LITMUS_URL} for ${LITMUS_TIMEOUT} seconds"
+  echo -n "Trying to access ${LITMUS_CHECK_URL} for ${LITMUS_TIMEOUT} seconds"
   STARTED=$(date +%s)
 
   while [ $(( $(date +%s) - ${LITMUS_TIMEOUT} )) -lt $STARTED ]
   do
-      if [[ $(curl --write-out %{http_code} --silent --output /dev/null http://${LITMUS_URL}) == "200" ]]
+      if [[ $(curl --write-out %{http_code} --silent --output /dev/null ${LITMUS_CHECK_URL}) == "${LITMUS_CHECK_STATUS}" ]]
       then
           break
       else
