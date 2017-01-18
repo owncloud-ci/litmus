@@ -4,8 +4,11 @@ set -e
 declare -x LITMUS_URL
 declare -x LITMUS_USERNAME
 declare -x LITMUS_PASSWORD
-declare -x LITMUS_TIMEOUT=3600
-declare -x LITMUS_WAIT=false
+declare -x LITMUS_TIMEOUT
+declare -x LITMUS_WAIT
+
+[[ -z "${LITMUS_TIMEOUT}" ]] && LITMUS_TIMEOUT="3600"
+[[ -z "${LITMUS_WAIT}" ]] && LITMUS_WAIT="false"
 
 if [[ ${LITMUS_WAIT} == "true" || ${LITMUS_WAIT} == "1" ]]
 then
