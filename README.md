@@ -40,7 +40,13 @@ IMAGE_NAME=owncloud/litmus ./hooks/build
 
 ## Available environment variables
 
-**None**
+```
+LITMUS_URL
+LITMUS_USERNAME
+LITMUS_PASSWORD
+LITMUS_TIMEOUT 3600
+LITMUS_WAIT false
+```
 
 
 ## Issues, Feedback and Ideas

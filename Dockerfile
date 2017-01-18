@@ -1,11 +1,7 @@
 FROM owncloud/alpine:latest
 MAINTAINER ownCloud DevOps <devops@owncloud.com>
 
-ARG VERSION
-ARG BUILD_DATE
-ARG VCS_REF
-
-ENTRYPOINT ["/usr/local/bin/litmus"]
+ENTRYPOINT ["/usr/local/bin/litmus-wrapper"]
 
 RUN apk update && \
   apk add openssl && \
@@ -19,7 +15,12 @@ RUN apk update && \
   apk del build-dependencies && \
   rm -rf /var/cache/apk/* /tmp/*
 
+WORKDIR /root
 COPY rootfs /
+
+ARG VERSION
+ARG BUILD_DATE
+ARG VCS_REF
 
 LABEL org.label-schema.version=$VERSION
 LABEL org.label-schema.build-date=$BUILD_DATE

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -e
+
+declare -x LITMUS_URL
+declare -x LITMUS_USERNAME
+declare -x LITMUS_PASSWORD
+declare -x LITMUS_TIMEOUT=3600
+declare -x LITMUS_WAIT=false
+
+if [[ ${LITMUS_WAIT} == "true" || ${LITMUS_WAIT} == "1" ]]
+then
+  echo -n "Trying to access http://${LITMUS_URL} for ${LITMUS_TIMEOUT} seconds"
+  STARTED=$(date +%s)
+
+  while [ $(( $(date +%s) - ${LITMUS_TIMEOUT} )) -lt $STARTED ]
+  do
+      if [[ $(curl --write-out %{http_code} --silent --output /dev/null http://${LITMUS_URL}) == "200" ]]
+      then
+          break
+      else
+          echo -n "."
+          sleep 1
+      fi
+  done
+
+  if [ $(( $(date +%s) - ${LITMUS_TIMEOUT} )) -ge $STARTED ]
+  then
+      echo "failed!"
+      exit 1
+  fi
+
+  echo "done!"
+fi
+
+exec /usr/local/bin/litmus ${LITMUS_URL} ${LITMUS_USERNAME} ${LITMUS_PASSWORD} $*
