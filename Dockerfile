@@ -1,34 +1,24 @@
 FROM owncloud/alpine:latest
-MAINTAINER ownCloud DevOps <devops@owncloud.com>
+
+LABEL maintainer="ownCloud DevOps <devops@owncloud.com>" \
+  org.label-schema.name="ownCloud Litmus" \
+  org.label-schema.vendor="ownCloud GmbH" \
+  org.label-schema.schema-version="1.0"
 
 ENTRYPOINT ["/usr/local/bin/litmus-wrapper"]
 
-COPY patch /tmp/
-
 RUN apk update && \
-  apk add openssl && \
-  apk add --virtual build-dependencies build-base openssl-dev && \
-  wget -q -O - http://www.webdav.org/neon/litmus/litmus-0.13.tar.gz | tar xzvf - -C /tmp && \
+  apk upgrade && \
+  apk add build-base openssl-dev openssl && \
+  wget -q -O - https://github.com/owncloud/core/files/1426448/litmus-0.13.tar.gz | tar xzvf - -C /tmp && \
   cd /tmp/litmus-0.13 && \
-  patch -p1 < /tmp/unicode.patch && \
+  curl -sSL https://gist.githubusercontent.com/tboerger/2f2cc274dcd245f90827cbf78ebdaab0/raw/acee242cc6ed68f5761b3808e29e24dd2ccbaf4b/unicode.patch | patch -p1 && \
   ./configure --with-ssl && \
   make && \
   PREFIX=/usr make install && \
   cd && \
-  apk del build-dependencies && \
+  apk del build-base openssl-dev && \
   rm -rf /var/cache/apk/* /tmp/*
 
 WORKDIR /root
 COPY rootfs /
-
-ARG VERSION
-ARG BUILD_DATE
-ARG VCS_REF
-
-LABEL org.label-schema.version=$VERSION
-LABEL org.label-schema.build-date=$BUILD_DATE
-LABEL org.label-schema.vcs-ref=$VCS_REF
-LABEL org.label-schema.vcs-url="https://github.com/owncloud-docker/litmus.git"
-LABEL org.label-schema.name="ownCloud Litmus"
-LABEL org.label-schema.vendor="ownCloud GmbH"
-LABEL org.label-schema.schema-version="1.0"

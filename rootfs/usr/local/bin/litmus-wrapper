@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 declare -x LITMUS_URL
 [[ -z "${LITMUS_URL}" ]] && LITMUS_URL=""
@@ -24,7 +24,7 @@ declare -x LITMUS_CHECK_STATUS
 
 if [[ ${LITMUS_WAIT} == "true" || ${LITMUS_WAIT} == "1" ]]
 then
-  echo -n "Trying to access ${LITMUS_CHECK_URL} for ${LITMUS_TIMEOUT} seconds"
+  echo -n "Trying to access ${LITMUS_CHECK_URL} for ${LITMUS_TIMEOUT} seconds..."
   STARTED=$(date +%s)
 
   while [ $(( $(date +%s) - ${LITMUS_TIMEOUT} )) -lt $STARTED ]

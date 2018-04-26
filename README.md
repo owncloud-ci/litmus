@@ -1,31 +1,14 @@
 # ownCloud: Litmus
 
-[![](https://images.microbadger.com/badges/image/owncloud/litus.svg)](https://microbadger.com/images/owncloud/litmus "Get your own image badge on microbadger.com")
+[![Build Status](https://drone.owncloud.com/api/badges/owncloud-docker/litmus/status.svg)](https://drone.owncloud.com/owncloud-docker/litmus)
+[![](https://images.microbadger.com/badges/image/owncloud/litmus.svg)](https://microbadger.com/images/owncloud/litmus "Get your own image badge on microbadger.com")
 
-This is our minimal image for [Litmus](http://www.webdav.org/neon/litmus/) based on our [Alpine container](https://registry.hub.docker.com/u/owncloud/alpine/).
-
-
-## Usage
-
-```bash
-docker run -ti \
-  --name litmus \
-  owncloud/litmus:latest
-```
-
-
-## Build locally
-
-The available versions should be already pushed to the Docker Hub, but in case you want to try a change locally you can always execute the following command to get this image built locally:
-
-```
-IMAGE_NAME=owncloud/litmus ./hooks/build
-```
+This is our image for [Litmus](http://www.webdav.org/neon/litmus/) based on our [Alpine container](https://registry.hub.docker.com/u/owncloud/alpine/).
 
 
 ## Versions
 
-* [latest](https://github.com/owncloud-docker/litmus/tree/master) available as ```owncloud/litmus:latest``` at [Docker Hub](https://registry.hub.docker.com/u/owncloud/litmus/)
+To get an overview about the available versions please take a look at the [GitHub branches](https://github.com/owncloud-docker/litmus/branches/all) or our [Docker Hub tags](https://hub.docker.com/r/owncloud/litmus/tags/), these lists are always up to date.
 
 
 ## Volumes
@@ -46,6 +29,20 @@ LITMUS_USERNAME
 LITMUS_PASSWORD
 LITMUS_TIMEOUT 3600
 LITMUS_WAIT false
+```
+
+
+## Inherited environment variables
+
+* [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#available-environment-variables)
+
+
+## Build locally
+
+The available versions should be already pushed to the Docker Hub, but in case you want to try a change locally you can always execute the following command to get this image built locally:
+
+```
+docker build -t owncloud/litmus:latest .
 ```
 
 
@@ -73,5 +70,5 @@ MIT
 ## Copyright
 
 ```
-Copyright (c) 2017 Thomas Boerger <tboerger@owncloud.com>
+Copyright (c) 2018 Thomas Boerger <tboerger@owncloud.com>
 ```
