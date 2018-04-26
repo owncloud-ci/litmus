@@ -34,7 +34,7 @@ LITMUS_WAIT false
 
 ## Inherited environment variables
 
-* [owncloud/ubuntu](https://github.com/owncloud-docker/ubuntu#available-environment-variables)
+* [owncloud/alpine](https://github.com/owncloud-docker/alpine#available-environment-variables)
 
 
 ## Build locally
