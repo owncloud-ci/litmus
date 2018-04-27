@@ -1,4 +1,4 @@
-FROM owncloud/alpine:latest
+FROM owncloud/alpine:edge
 
 LABEL maintainer="ownCloud DevOps <devops@owncloud.com>" \
   org.label-schema.name="ownCloud Litmus" \
