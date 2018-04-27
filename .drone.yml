@@ -3,7 +3,7 @@ workspace:
   path: src/github.com/owncloud-docker/litmus
 
 branches:
-  - master
+  - 'master'
 
 clone:
   git:
@@ -18,7 +18,7 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     repo: owncloud/litmus
     tags:
-      - latest
+      - 'latest'
     dry_run: true
     when:
       event: [ pull_request ]
@@ -29,7 +29,7 @@ pipeline:
     secrets: [ docker_username, docker_password ]
     repo: owncloud/litmus
     tags:
-      - latest
+      - 'latest'
     when:
       event: [ push ]
 
