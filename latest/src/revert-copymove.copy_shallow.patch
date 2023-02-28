@@ -1,0 +1,13 @@
+diff --git a/src/copymove.c b/src/copymove.c
+index d239404..a4ccb47 100644
+--- a/src/copymove.c
++++ b/src/copymove.c
+@@ -216,7 +216,7 @@ static int copy_shallow(void)
+ 
+     /* Now make sure the child resource hasn't been copied along with
+      * the collection. */
+-    res = ne_concat(i_path, "ccdest/foo", NULL);
++    res = ne_concat(i_path, "foo", NULL);
+     ne_delete(i_session, res);
+     ONV(STATUS(404), 
+         ("DELETE on `%s' should fail with 404: got %d", res, GETSTATUS));

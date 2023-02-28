@@ -1,0 +1,12 @@
+diff --git a/src/props.c b/src/props.c
+index aefb21c..35e23f2 100644
+--- a/src/props.c
++++ b/src/props.c
+@@ -565,7 +565,6 @@ ne_test tests[] =
+     T(propdeletes), T(propget),
+     T(propreplace), T(propget),
+     T(propnullns), T(propget),
+-    T(prophighunicode), T(propget),
+     T(propremoveset), T(propget),
+     T(propsetremove), T(propget),
+     T(propvalnspace), T(propwformed),

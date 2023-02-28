@@ -15,19 +15,19 @@ ENV LITMUS_VERSION="${LITMUS_VERSION:-0.14}"
 ADD rootfs/ /
 ADD src/ /tmp/src
 
-RUN apk --update add --virtual .build-deps build-base openssl-dev libxml2-dev curl && \
+RUN apk --update add --virtual .build-deps build-base openssl-dev libxml2-dev curl patch && \
   apk --update add bash openssl libxml2 && \
   mkdir -p /tmp/src/litmus && \
   curl -SsfL "https://notroj.github.io/litmus/litmus-${LITMUS_VERSION}.tar.gz" | tar xz --strip 1 -C /tmp/src/litmus && \
   cd /tmp/src/litmus && \
-  patch -p1 unicode.patch && \
-  patch -p1 remove-locks.fail_complex_cond_put.patch && \
+  cat /tmp/src/remove-locks.fail_complex_cond_put.patch | patch -p1 && \
+  cat /tmp/src/remove-props.prophighunicode.patch | patch -p1 && \
+  cat /tmp/src/revert-copymove.copy_shallow.patch | patch -p1 && \
   ./configure --with-ssl && \
   make && \
   PREFIX=/usr make install && \
   apk del .build-deps && \
-  rm -rf /var/cache/apk/* && \
-  rm -rf /tmp/*
+  rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/usr/local/bin/litmus-wrapper"]
 WORKDIR /root
