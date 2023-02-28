@@ -1,0 +1,34 @@
+FROM alpine:3.17@sha256:69665d02cb32192e52e07644d76bc6f25abeb5410edc1c7a81a10ba3f0efb90a
+
+LABEL maintainer="ownCloud GmbH <devops@owncloud.com>"
+LABEL org.opencontainers.image.authors="ownCloud DevOps <devops@owncloud.com>"
+LABEL org.opencontainers.image.title="ownCloud CI Litmus"
+LABEL org.opencontainers.image.url="https://hub.docker.com/r/owncloudci/litmus"
+LABEL org.opencontainers.image.source="https://github.com/owncloud-ci/litmus"
+LABEL org.opencontainers.image.documentation="https://github.com/owncloud-ci/litmus"
+
+ARG LITMUS_VERSION
+
+# renovate: datasource=github-tags depName=notroj/litmus versioning=loose
+ENV LITMUS_VERSION="${LITMUS_VERSION:-0.14}"
+
+ADD rootfs/ /
+ADD src/ /tmp/src
+
+RUN apk --update add --virtual .build-deps build-base openssl-dev libxml2-dev curl && \
+  apk --update add bash openssl libxml2 && \
+  mkdir -p /tmp/src/litmus && \
+  curl -SsfL "https://notroj.github.io/litmus/litmus-${LITMUS_VERSION}.tar.gz" | tar xz --strip 1 -C /tmp/src/litmus && \
+  cd /tmp/src/litmus && \
+  patch -p1 unicode.patch && \
+  patch -p1 remove-locks.fail_complex_cond_put.patch && \
+  ./configure --with-ssl && \
+  make && \
+  PREFIX=/usr make install && \
+  apk del .build-deps && \
+  rm -rf /var/cache/apk/* && \
+  rm -rf /tmp/*
+
+ENTRYPOINT ["/usr/local/bin/litmus-wrapper"]
+WORKDIR /root
+CMD []
