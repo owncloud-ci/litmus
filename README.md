@@ -6,7 +6,7 @@
 [![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/owncloud-ci/litmus)
 [![License: MIT](https://img.shields.io/github/license/owncloud-ci/litmus)](https://github.com/owncloud-ci/litmus/blob/master/LICENSE)
 
-Custom container image for [Litmus](http://www.webdav.org/neon/litmus/) WebDAV server protocol compliance test suite.
+Custom container image for [Litmus](https://notroj.github.io/litmus/) WebDAV server protocol compliance test suite.
 
 ## Environment variables
 
