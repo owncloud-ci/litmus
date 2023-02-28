@@ -1,0 +1,11 @@
+diff -ruN litmus-0.13.orig/src/locks.c litmus-0.13/src/locks.c
+--- litmus-0.13.orig/src/locks.c	2018-06-13 08:13:00.912180721 +0200
++++ litmus-0.13/src/locks.c	2018-06-12 17:29:05.040661244 +0200
+@@ -616,7 +616,7 @@
+     T(cond_put_with_not),
+     T(cond_put_corrupt_token),
+     T(complex_cond_put),
+-    T(fail_complex_cond_put),
++    //T(fail_complex_cond_put),
+
+     T(unlock),

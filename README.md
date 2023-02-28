@@ -1,29 +1,16 @@
-# ownCloud: Litmus
+# Litmus for ownCloud CI
 
-[![Build Status](https://drone.owncloud.com/api/badges/owncloud-docker/litmus/status.svg)](https://drone.owncloud.com/owncloud-docker/litmus)
-[![](https://images.microbadger.com/badges/image/owncloud/litmus.svg)](https://microbadger.com/images/owncloud/litmus "Get your own image badge on microbadger.com")
+[![Build Status](https://img.shields.io/drone/build/owncloud-ci/litmus?logo=drone&server=https%3A%2F%2Fdrone.owncloud.com)](https://drone.owncloud.com/owncloud-ci/litmus)
+[![Docker Hub](https://img.shields.io/docker/v/owncloudci/litmus?logo=docker&label=dockerhub&sort=semver&logoColor=white)](https://hub.docker.com/r/owncloudci/litmus)
+[![GitHub contributors](https://img.shields.io/github/contributors/owncloud-ci/litmus)](https://github.com/owncloud-ci/litmus/graphs/contributors)
+[![Source: GitHub](https://img.shields.io/badge/source-github-blue.svg?logo=github&logoColor=white)](https://github.com/owncloud-ci/litmus)
+[![License: MIT](https://img.shields.io/github/license/owncloud-ci/litmus)](https://github.com/owncloud-ci/litmus/blob/master/LICENSE)
 
-This is our image for [Litmus](http://www.webdav.org/neon/litmus/) based on our [Alpine container](https://registry.hub.docker.com/u/owncloud/alpine/).
+Custom container image for [Litmus](http://www.webdav.org/neon/litmus/) WebDAV server protocol compliance test suite.
 
+## Environment variables
 
-## Versions
-
-To get an overview about the available versions please take a look at the [GitHub branches](https://github.com/owncloud-docker/litmus/branches/all) or our [Docker Hub tags](https://hub.docker.com/r/owncloud/litmus/tags/), these lists are always up to date.
-
-
-## Volumes
-
-* None
-
-
-## Ports
-
-* None
-
-
-## Available environment variables
-
-```
+```Shell
 LITMUS_URL
 LITMUS_USERNAME
 LITMUS_PASSWORD
@@ -31,35 +18,12 @@ LITMUS_TIMEOUT 3600
 LITMUS_WAIT false
 ```
 
-
-## Inherited environment variables
-
-* [owncloud/alpine](https://github.com/owncloud-docker/alpine#available-environment-variables)
-
-
-## Issues, Feedback and Ideas
-
-Open an [Issue](https://github.com/owncloud-docker/litmus/issues)
-
-
-## Contributing
-
-Fork -> Patch -> Push -> Pull Request
-
-
-## Authors
-
-* [Thomas Boerger](https://github.com/tboerger)
-* [Thomas Mueller](https://github.com/DeepDiver1975)
-
-
 ## License
 
-MIT
-
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/owncloud-ci/litmus/blob/master/LICENSE) file for details.
 
 ## Copyright
 
-```
-Copyright (c) 2018 Thomas Boerger <tboerger@owncloud.com>
+```Text
+Copyright (c) 2022 ownCloud GmbH
 ```
