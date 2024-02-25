@@ -10,7 +10,7 @@ LABEL org.opencontainers.image.documentation="https://github.com/owncloud-ci/lit
 ARG LITMUS_VERSION
 
 # renovate: datasource=github-tags depName=notroj/litmus versioning=loose
-ENV LITMUS_VERSION="${LITMUS_VERSION:-0.14}"
+ENV LITMUS_VERSION="${LITMUS_VERSION:-0.15}"
 
 ADD rootfs/ /
 ADD src/ /tmp/src
