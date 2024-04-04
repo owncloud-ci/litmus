@@ -119,7 +119,7 @@ def notification(config):
     'image': 'plugins/slack',
     'settings': {
       'webhook': {
-        'from_secret': 'rocketchat_chat_webhook',
+        'from_secret': 'rocketchat_talk_webhook',
       },
       'channel': 'builds',
     },
